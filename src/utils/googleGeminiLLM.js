@@ -9,6 +9,13 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
  */
 export async function getDetailsGoogleGeminiAPI(textContent) {
     try {
+
+        // Check for API key
+        if(!process.env.GOOGLE_AI_STUDIO_API_KEY){
+            console.error("Please Enter a valid API key in the .env file");
+            return;
+        }
+
         // Initialized gemini model
         const llm = new ChatGoogleGenerativeAI({
             model: "gemini-1.5-flash",
